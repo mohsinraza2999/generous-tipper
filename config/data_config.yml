@@ -1,0 +1,23 @@
+raw_path: data/raw/
+name: Yellow_Taxi_Trip_Data.csv
+processed_path: data/processed/
+outlier: [['fare_amount', 6.0]]
+feature_engineer:
+  tip_col_eng:
+        name: tip_percent
+        use_col: {'tip_col':'tip_amount','amount_col':'total_amount'}
+  target_col_eng:
+        name: generous
+        use_col: tip_percent
+  day_col_eng:
+        name: day
+        use_col: tpep_pickup_datetime
+  hours_col_eng:
+        name: hours
+        use_col: tpep_pickup_datetime
+
+
+drop: ['trip_distance', 'tip_amount', 'tip_percent', 'total_amount', 'tolls_amount','tpep_pickup_datetime','tpep_dropoff_datetime','extra','store_and_fwd_flag','mta_tax', 'Unnamed: 0']
+categorical: ["hours", "day", "PULocationID", "DOLocationID"]
+numerical: ['passenger_count', 'fare_amount', 'improvement_surcharge', "VendorID", "payment_type"]
+datetime: ['tpep_pickup_datetime','tpep_dropoff_datetime']

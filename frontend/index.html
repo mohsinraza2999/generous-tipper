@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Taxi Fare Prediction</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>🚕 Taxi Fare Prediction</h1>
+    <p class="subtitle">Enter trip details to predict fare</p>
+
+    <form id="prediction-form">
+      <div class="grid">
+        <input type="number" name="VendorID" placeholder="Vendor ID" required min="1" />
+        <input type="number" name="passenger_count" placeholder="Passenger Count" required min="1" />
+        <input type="number" name="RatecodeID" placeholder="Rate Code ID" required min="1" />
+        <input type="number" name="PULocationID" placeholder="Pickup Location ID" required min="1" />
+        <input type="number" name="DOLocationID" placeholder="Dropoff Location ID" required min="1" />
+        <input type="number" name="payment_type" placeholder="Payment Type (1=Card, 2=Cash)" required min="1" />
+        <input type="number" step="0.01" name="fare_amount" placeholder="Fare Amount" required min="0" />
+        <input type="number" step="0.01" name="improvement_surcharge" placeholder="Improvement Surcharge" required min="0" />
+        <input type="datetime-local" name="trip_date" required />
+      </div>
+
+      <button type="submit">Predict Fare</button>
+    </form>
+
+    <div id="loading" class="hidden">⏳ Running model...</div>
+
+    <div id="result" class="result hidden">
+      <h2>Prediction Result</h2>
+      <p><strong>Fare:</strong> <span id="prediction"></span></p>
+      <p><strong>Latency:</strong> <span id="latency"></span> ms</p>
+      <p><strong>Processed at:</strong> <span id="processed"></span></p>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

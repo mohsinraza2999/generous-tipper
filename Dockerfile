@@ -20,7 +20,7 @@ COPY pyproject.toml /app/
 COPY src /app/src
 
 # build wheels, install packages
-RUN pip wheel --no-cache-dir -w /wheels .
+RUN pip wheels --no-cache-dir -w /wheels .
 
 # test image
 FROM base AS test

@@ -28,10 +28,15 @@ RUN pip install --update pip \
 FROM base AS test
 
 # copying the test essentials
+COPY config app/config
 COPY pyproject.toml /app/
 COPY data /app/data
 COPY src /app/src
 COPY tests /app/tests
+
+COPY --from=builder /wheels /wheels
+RUN pip install --no-cache-dir /wheels/* \
+    && rm -rf /wheels
 
 RUN pip install .[dev]
 

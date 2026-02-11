@@ -36,7 +36,7 @@ COPY config app/config
 COPY src /app/src
 COPY data /app/data
 COPY tests /app/tests
-
+ENV CONFIG_DIR=/app/config
 
 CMD ["pytest", "-q"]
 

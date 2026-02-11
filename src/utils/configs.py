@@ -1,13 +1,14 @@
 import yaml
 from typing import Dict
 from pathlib import Path
+import os
 from sklearn.metrics import make_scorer, accuracy_score, precision_score, recall_score, f1_score
 
 class Configurations:
     def __init__(self):
-        CONFIG_DIR = Path("/app/config")
+        CONFIG_DIR = Path(os.getenv("CONFIG_DIR", "/app/config"))
         self.TRAIN_CFG = CONFIG_DIR / "train_config.yml"
-        self.DATA_CFG=CONFIG_DIR / "train_config.yml"
+        self.DATA_CFG=CONFIG_DIR / "data_config.yml"
         
     def training_configs(self)-> Dict[str,str]:
         

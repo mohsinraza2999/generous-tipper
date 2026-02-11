@@ -35,14 +35,14 @@ def test_train_val_split(train_config)-> None:
 
 
 def test_pipeline_builds(train_config):
-    for model_name in train_config['type']:
+    for model_name in train_config['model']['type']:
         pipeline = pipeline_builder(
             model_type=model_name
         )
         assert pipeline is not None
     
 def test_param_grid_matches_pipeline(train_config):
-    for model_name in train_config['type']:
+    for model_name in train_config['model']['type']:
         pipeline = pipeline_builder(
             model_type=model_name
         )
@@ -56,7 +56,7 @@ def test_param_grid_matches_pipeline(train_config):
             assert param in pipeline_params, f"{param} not in pipeline"
 
 def test_pipeline_predict_shape(train_config):
-    for model_name in train_config['type']:
+    for model_name in train_config['model']['type']:
         pipeline = pipeline_builder(
             model_type=model_name
         )						

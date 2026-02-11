@@ -21,8 +21,7 @@ COPY src /app/src
 COPY config app/config
 
 # build wheels, install packages
-RUN pip install --update pip \
-    && pip wheels --no-cache-dir
+RUN  pip wheel --no-cache-dir -w / wheels .
 
 # test image
 FROM base AS test

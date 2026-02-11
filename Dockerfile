@@ -20,22 +20,22 @@ COPY pyproject.toml /app/
 COPY src /app/src
 
 # build wheels, install packages
-RUN pip wheels --no-cache-dir -w /wheels .
+RUN pip wheel --no-cache-dir -w /wheels .
 
 # test image
 FROM base AS test
 
+COPY pyproject.toml /app/
 COPY --from=builder /wheels /wheels
 RUN pip install --no-cache-dir /wheels/* \
+    && pip install --no-cache-dir .[dev] \
     && rm -rf /wheels
 
 # copying the test essentials
 COPY config app/config
-COPY pyproject.toml /app/
 COPY data /app/data
 COPY tests /app/tests
 
-RUN pip install .[dev]
 
 CMD ["pytest", "-q"]
 

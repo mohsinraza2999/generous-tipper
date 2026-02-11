@@ -209,5 +209,5 @@ logs/applogs.log
 notebooks/experiments.ipynb
 notebooks/linear_regression.ipynb
 scripts
-data/processed/processed_data.csv
-data/raw/Yellow_Taxi_Trip_Data.csv
+#data/processed/processed_data.csv
+#data/raw/Yellow_Taxi_Trip_Data.csv

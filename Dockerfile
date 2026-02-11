@@ -27,8 +27,13 @@ RUN pip install --update pip \
 # test image
 FROM base AS test
 
+# copying the test essentials
+COPY pyproject.toml /app/
 COPY data /app/data
+COPY src /app/src
 COPY tests /app/tests
+
+RUN pip install .[dev]
 
 CMD ["pytest", "-q"]
 

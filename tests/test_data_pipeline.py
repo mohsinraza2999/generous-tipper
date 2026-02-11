@@ -53,7 +53,7 @@ def test_param_grid_matches_pipeline(train_config):
         pipeline_params = train_object.tune_tipper.get_params().keys()
 
         for param in train_config[model_name]['params']:
-            assert param in pipeline_params, f"{param} not in pipeline"
+            assert param[7:] in pipeline_params, f"{param} not in pipeline"
 
 def test_pipeline_predict_shape(train_config):
     for model_name in train_config['model']['type']:

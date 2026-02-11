@@ -32,7 +32,7 @@ RUN pip install --no-cache-dir /wheels/* \
     && rm -rf /wheels
 
 # copying the test essentials
-COPY config app/config
+COPY config /app/config
 COPY src /app/src
 COPY data /app/data
 COPY tests /app/tests

@@ -18,24 +18,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # copying the essentials
 COPY pyproject.toml /app/
 COPY src /app/src
-COPY config app/config
 
 # build wheels, install packages
-RUN  pip wheel --no-cache-dir -w / wheels .
+RUN pip wheel --no-cache-dir -w /wheels .
 
 # test image
 FROM base AS test
+
+COPY --from=builder /wheels /wheels
+RUN pip install --no-cache-dir /wheels/* \
+    && rm -rf /wheels
 
 # copying the test essentials
 COPY config app/config
 COPY pyproject.toml /app/
 COPY data /app/data
-COPY src /app/src
 COPY tests /app/tests
-
-COPY --from=builder /wheels /wheels
-RUN pip install --no-cache-dir /wheels/* \
-    && rm -rf /wheels
 
 RUN pip install .[dev]
 

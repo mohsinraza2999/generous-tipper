@@ -47,8 +47,10 @@ COPY --from=builder /wheels /wheels
 RUN pip install --no-cache-dir /wheels/* \
     && rm -rf /wheels
 
+COPY config /app/config
 COPY data /app/data
 COPY src /app/src
+ENV CONFIG_DIR=/app/config
 
 CMD ["python","src/cli.py","process"]
 CMD ["python","src/cli.py","train"]
@@ -64,7 +66,7 @@ RUN pip install --no-cache-dir /wheels/* \
 
 # 🔴 COPY RUNTIME FILES
 COPY config /app/config
-COPY logs /app/logs
+#COPY logs /app/logs
 
 # After copying source (This ensures USER app can write there.)
 RUN mkdir -p /app/logs && chown -R app:app /app
